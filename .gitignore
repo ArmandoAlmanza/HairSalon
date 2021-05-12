@@ -1,5 +1,5 @@
 /node_modules
-/assets
+/assets/img
 package-lock.json
 package.json
 gulpfile.js

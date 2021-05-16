@@ -1,0 +1,34 @@
+{
+  "name": "hair_salon",
+  "version": "1.0.0",
+  "description": "Page with SASS using DB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArmandoAlmanza/HairSalon.git"
+  },
+  "keywords": [
+    "SASS",
+    "node"
+  ],
+  "author": "Armando Almanza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArmandoAlmanza/HairSalon/issues"
+  },
+  "homepage": "https://github.com/ArmandoAlmanza/HairSalon#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-terser-js": "^5.2.2",
+    "gulp-webp": "^4.0.1",
+    "terser": "^5.3.8"
+  }
+}

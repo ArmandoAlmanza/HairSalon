@@ -1,7 +1,7 @@
 /node_modules
 /assets/img
+/assets/js
 /assets/sass/export
 package-lock.json
-package.json
 gulpfile.js
 

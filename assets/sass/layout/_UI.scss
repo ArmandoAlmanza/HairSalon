@@ -20,4 +20,12 @@ html {
 	width: 95%;
 	margin: 0 auto;
 	padding-top: $separation / 2;
+
+	.section{
+		margin-top: $separation / 2;
+		display: none;
+		&:first-of-type{
+			display: block;
+		}
+	}
 }

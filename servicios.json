@@ -2,53 +2,53 @@
     "servicios": [
         {
             "id": 1,
-            "nombre": "Corte de Cabello Adulto",
-            "precio": 80
+            "name": "Men haircut",
+            "price": 80
         },
         {
             "id": 2,
-            "nombre": "Corte de Cabello Niño",
-            "precio": 60
+            "name": "Child's haircut",
+            "price": 60
         },
         {
             "id": 3,
-            "nombre": "Corte de Cabello Mujer",
-            "precio": 100
+            "name": "Women’s haircut",
+            "price": 100
         },
         {
             "id": 4,
-            "nombre": "Corte de Barba",
-            "precio": 100
+            "name": "Beard cut",
+            "price": 100
         },
         {
             "id": 5,
-            "nombre": "Peinado Hombre",
-            "precio": 60
+            "name": "Hairstyle man",
+            "price": 60
         },
         {
             "id": 6,
-            "nombre": "Peinado Mujer",
-            "precio": 100
+            "name": "Female hairstyle",
+            "price": 100
         },
         {
             "id": 7,
-            "nombre": "Tinte",
-            "precio": 300
+            "name": "Dye",
+            "price": 300
         },
         {
             "id": 8,
-            "nombre": "Uñas",
-            "precio": 400
+            "name": "Nails",
+            "price": 400
         },
         {
             "id": 9,
-            "nombre": "Lavado de Cabello",
-            "precio": 50
+            "name": "Hair washing",
+            "price": 50
         },
         {
             "id": 10,
-            "nombre" : "Tratamiento Capilar",
-            "precio": 150
+            "name" : "Hair treatment",
+            "price": 150
         }
     ]
 }

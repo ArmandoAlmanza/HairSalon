@@ -1,0 +1,8 @@
+.service-list {
+    @include tablet {
+        @include grid(2, 2rem);
+    }
+}
+.service{
+    
+}

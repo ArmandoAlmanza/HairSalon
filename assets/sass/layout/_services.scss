@@ -2,7 +2,31 @@
     @include tablet {
         @include grid(2, 2rem);
     }
-}
-.service{
-    
+    .service{
+        margin-bottom: 2rem;
+        padding: $separation / 2;
+        background-color: $white;
+        border-radius: 1rem;
+        @include tablet{
+            margin-bottom: 0;
+        }
+        p{
+            margin: 0 0 $separation / 4 0;
+        }
+        .service-name{
+            color: $blackC;
+        }
+        .service-price{
+            color: $blue;
+            margin: 0;
+            font-size: 3rem;
+            font-weight: $bold;
+        }
+        &.select{
+            background-color: $blue;
+            p{
+                color: $white;
+            }
+        }
+    }
 }

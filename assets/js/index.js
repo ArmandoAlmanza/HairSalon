@@ -1,9 +1,15 @@
+let page = 1;
+
 document.addEventListener("DOMContentLoaded", () => {
     App();
 });
 
 const App = () => {
     showServices();
+
+    showSection();
+
+    changeSection();
 };
 
 async function showServices() {
@@ -53,3 +59,25 @@ function selectService(e) {
         element.classList.add("select");
     }
 }
+
+const showSection = () =>{
+    const actualSection = document.querySelector(`#step${page}`);
+    actualSection.classList.add('show');
+}
+
+const changeSection = () => {
+    const links = document.querySelectorAll(".tabs button");
+
+    links.forEach((link) => {
+        link.addEventListener("click", e => {
+            e.preventDefault();
+            page = parseInt(e.target.dataset.step);
+
+            document.querySelector('.show').classList.remove('show');
+
+            const section = document.querySelector(`#step${page}`);
+            section.classList.add('show');
+        });
+    });
+};
+

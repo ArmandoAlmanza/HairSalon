@@ -15,23 +15,22 @@
                     <h1>Hair Salon app</h1>
                 </header>
                 <nav class="tabs">
-                    <button id = "services" type="button">Services</button>
-                    <button id = "info" type="button">Info. Client</button>
-                    <button id = "resume" type="button">Resume</button>
+                    <button id="services" type="button" data-step="1">Services</button>
+                    <button id="info" type="button" data-step="2">Info. Client</button>
+                    <button id="resume" type="button" data-step="3">Resume</button>
                 </nav>
 
-                <div class="section">
+                <div id="step1" class="section">
                     <h2>Services</h2>
                     <p class="text-center">Choose your services bellow</p>
-                    <div id = "servicio" class="service-list"></div>
+                    <div id="servicio" class="service-list"></div>
                 </div>
-                <div class="section">
+                <div id="step2" class="section">
                     <h2>Your information</h2>
                 </div>
-                <div class="section">
+                <div id="step3" class="section">
                     <h2>Resume</h2>
                 </div>
-
             </div>
         </div>
         <script src="./build/js/index.js"></script>

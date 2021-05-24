@@ -24,8 +24,8 @@ html {
 	.section{
 		margin-top: $separation / 2;
 		display: none;
-		&:first-of-type{
-			display: block;
-		}
 	}
+}
+.show{
+	display: block!important;
 }

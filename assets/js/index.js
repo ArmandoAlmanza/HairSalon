@@ -10,6 +10,12 @@ const App = () => {
     showSection();
 
     changeSection();
+
+    prePage();
+
+    nextPage();
+
+    validPage();
 };
 
 async function showServices() {
@@ -61,8 +67,18 @@ function selectService(e) {
 }
 
 const showSection = () => {
+    const preSection = document.querySelector(".show");
+    if (preSection) {
+        preSection.classList.remove("show");
+    }
+
     const actualSection = document.querySelector(`#step${page}`);
     actualSection.classList.add("show");
+
+    const preTab = document.querySelector(".tabs .actual");
+    if (preTab) {
+        preTab.classList.remove("actual");
+    }
 
     const tab = document.querySelector(`[data-step="${page}"]`);
     tab.classList.add("actual");
@@ -76,14 +92,42 @@ const changeSection = () => {
             e.preventDefault();
             page = parseInt(e.target.dataset.step);
 
-            document.querySelector(".show").classList.remove("show");
-
-            const section = document.querySelector(`#step${page}`);
-            section.classList.add("show");
-
-            document.querySelector(".tabs .actual").classList.remove("actual");
-            const tab = document.querySelector(`[data-step="${page}"]`);
-            tab.classList.add("actual");
+            showSection();
+            validPage();
         });
     });
+};
+const nextPage = () => {
+    const btnNext = document.getElementById("next");
+
+    btnNext.addEventListener("click", () => {
+        page++;
+        validPage();
+    });
+};
+
+const prePage = () => {
+    const btnPre = document.getElementById("previous");
+    btnPre.addEventListener("click", () => {
+        page--;
+        validPage();
+    });
+};
+
+const validPage = () => {
+    const btnNext = document.getElementById("next");
+    const btnPre = document.getElementById("previous");
+
+    if (page === 1) {
+        btnNext.classList.remove("d-none");
+        btnPre.classList.add("d-none");
+    } else if (page === 3) {
+        btnNext.classList.add("d-none");
+        btnPre.classList.remove("d-none");
+    } else {
+        btnNext.classList.remove("d-none");
+        btnPre.classList.remove("d-none");
+    }
+
+    showSection();
 };

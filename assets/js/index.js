@@ -1,5 +1,12 @@
 let page = 1;
 
+const cita = {
+    name: "",
+    date: "",
+    hour: "",
+    services: [],
+};
+
 document.addEventListener("DOMContentLoaded", () => {
     App();
 });
@@ -16,6 +23,8 @@ const App = () => {
     nextPage();
 
     validPage();
+
+    showResume();
 };
 
 async function showServices() {
@@ -130,4 +139,18 @@ const validPage = () => {
     }
 
     showSection();
+};
+
+const showResume = () => {
+    const { name, date, hour, service } = cita;
+
+    const divResume = document.querySelector(".resumeContent");
+
+    if (Object.values(cita).includes("")) {
+        const noService = document.createElement("p");
+        noService.textContent = "Missing service data, time, date or name";
+        noService.classList.add("invalidDate");
+
+        divResume.appendChild(noService);
+    }
 };

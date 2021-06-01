@@ -25,6 +25,8 @@ const App = () => {
     validPage();
 
     showResume();
+
+    nameDate();
 };
 
 async function showServices() {
@@ -70,10 +72,32 @@ function selectService(e) {
 
     if (element.classList.contains("select")) {
         element.classList.remove("select");
+        const id = parseInt(element.dataset.serviceID);
+        deleteService(id);
     } else {
         element.classList.add("select");
+
+        const objService = {
+            id: parseInt(element.dataset.serviceID),
+            name: element.firstElementChild.textContent,
+            price: element.firstElementChild.nextElementSibling.textContent,
+        };
+        // console.log(objService);
+        addService(objService);
     }
 }
+
+const deleteService = (id) => {
+    const { services } = cita;
+    cita.services = services.filter((service) => service.id !== id);
+    // console.log(cita);
+};
+
+const addService = (objService) => {
+    const { services } = cita;
+    cita.services = [...services, objService];
+    // console.log(cita);
+};
 
 const showSection = () => {
     const preSection = document.querySelector(".show");
@@ -153,4 +177,45 @@ const showResume = () => {
 
         divResume.appendChild(noService);
     }
+};
+
+const nameDate = () => {
+    const inputName = document.getElementById("name");
+    inputName.addEventListener("input", (e) => {
+        const nameTxt = e.target.value.trim();
+
+        if (nameTxt === "" || nameTxt.length < 3) {
+            showAlert("eres puto", "error");
+        } else {
+            const alert = document.querySelector('.alert');
+            if(alert){
+                alert.remove();
+            }
+            cita.name = nameTxt;
+            // console.log(cita);
+        }
+    });
+};
+
+const showAlert = (message, type) => {
+    const preAlert = document.querySelector('.alert');
+    if(preAlert){
+        return;
+    }
+    console.log(`Hijole carnal pero el patron dice que ${message}`);
+
+    const alert = document.createElement("div");
+    alert.textContent = message;
+    alert.classList.add("alert");
+
+    if (type === "error") {
+        alert.classList.add("error");
+    }
+    const formulario = document.querySelector('.formulario');
+    formulario.appendChild(alert);
+    // console.log(alert);
+
+    setTimeout(() => {
+        alert.remove();
+    }, 3000);
 };

@@ -27,6 +27,10 @@ const App = () => {
     showResume();
 
     nameDate();
+
+    valitDate();
+
+    dayDate();
 };
 
 async function showServices() {
@@ -173,7 +177,7 @@ const showResume = () => {
     if (Object.values(cita).includes("")) {
         const noService = document.createElement("p");
         noService.textContent = "Missing service data, time, date or name";
-        noService.classList.add("invalidDate");
+        noService.classList.add("invalitDate");
 
         divResume.appendChild(noService);
     }
@@ -187,8 +191,8 @@ const nameDate = () => {
         if (nameTxt === "" || nameTxt.length < 3) {
             showAlert("eres puto", "error");
         } else {
-            const alert = document.querySelector('.alert');
-            if(alert){
+            const alert = document.querySelector(".alert");
+            if (alert) {
                 alert.remove();
             }
             cita.name = nameTxt;
@@ -198,11 +202,11 @@ const nameDate = () => {
 };
 
 const showAlert = (message, type) => {
-    const preAlert = document.querySelector('.alert');
-    if(preAlert){
+    const preAlert = document.querySelector(".alert");
+    if (preAlert) {
         return;
     }
-    console.log(`Hijole carnal pero el patron dice que ${message}`);
+    // console.log(`Hijole carnal pero el patron dice que ${message}`);
 
     const alert = document.createElement("div");
     alert.textContent = message;
@@ -211,11 +215,50 @@ const showAlert = (message, type) => {
     if (type === "error") {
         alert.classList.add("error");
     }
-    const formulario = document.querySelector('.formulario');
+    const formulario = document.querySelector(".formulario");
     formulario.appendChild(alert);
     // console.log(alert);
 
     setTimeout(() => {
         alert.remove();
     }, 3000);
+};
+
+const dayDate = () => {
+    const inputDate = document.getElementById("date");
+    inputDate.addEventListener("input", (e) => {
+        const day = new Date(e.target.value).getUTCDay();
+        if ([0, 6].includes(day)) {
+            e.preventDefault();
+            inputDate.value = "";
+            showAlert("the weekends are not valid dude", "error");
+        } else {
+            cita.date = inputDate.value;
+            console.log(cita);
+        }
+        /* const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long'
+        };
+        console.log(day.toLocaleDateString('es-ES', options)); */
+    });
+};
+const valitDate = () => {
+    const inputDate = document.querySelector("#date");
+    const today = new Date();
+    let fecha = "";
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+
+    if (month < 10 && day < 10) {
+        fecha = `${year}-0${month}-0${day}`;
+    } else if (day < 10 && month >= 10) {
+        fecha = `${year}-${month}-0${day}`;
+    } else {
+        fecha = `${year}-${month}-${day}`;
+    }
+
+    inputDate.min = fecha;
 };

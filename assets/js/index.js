@@ -31,6 +31,8 @@ const App = () => {
     valitDate();
 
     dayDate();
+
+    hourDate();
 };
 
 async function showServices() {
@@ -161,6 +163,7 @@ const validPage = () => {
     } else if (page === 3) {
         btnNext.classList.add("d-none");
         btnPre.classList.remove("d-none");
+        showResume();
     } else {
         btnNext.classList.remove("d-none");
         btnPre.classList.remove("d-none");
@@ -174,13 +177,33 @@ const showResume = () => {
 
     const divResume = document.querySelector(".resumeContent");
 
+    while( divResume.firstChild){
+        divResume.removeChild(divResume.firstChild);
+    }
+
     if (Object.values(cita).includes("")) {
         const noService = document.createElement("p");
         noService.textContent = "Missing service data, time, date or name";
         noService.classList.add("invalitDate");
 
         divResume.appendChild(noService);
-    }
+
+        return;
+    } 
+
+    // show the resume
+    const nameDate = document.createElement('p');
+    nameDate.innerHTML = `<span>Name:</span> ${name}`;
+
+    const dayDate = document.createElement('p');
+    dayDate.innerHTML = `<span>Day:</span> ${date}`;
+
+    const hourDate = document.createElement('p');
+    hourDate.innerHTML = `<span>hour:</span> ${hour}`;
+
+    divResume.appendChild(nameDate);
+    divResume.appendChild(dayDate);
+    divResume.appendChild(hourDate);
 };
 
 const nameDate = () => {
@@ -262,3 +285,19 @@ const valitDate = () => {
 
     inputDate.min = fecha;
 };
+
+const hourDate = () =>{
+    const inputHour = document.getElementById('hour');
+    inputHour.addEventListener('input', e =>{
+        const dateHour = e.target.value;
+        const hour = dateHour.split(":");
+        if(hour[0] < 10 || hour[0] > 18){
+            showAlert('opening hours from 9hrs to 18hrs', 'error');
+            setTimeout(() =>{
+                inputHour.value = '';
+            }, 1000)
+        } else {
+            cita.hour = dateHour;
+        }
+    })
+}

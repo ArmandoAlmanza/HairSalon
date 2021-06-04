@@ -173,11 +173,11 @@ const validPage = () => {
 };
 
 const showResume = () => {
-    const { name, date, hour, service } = cita;
+    const { name, date, hour, services } = cita;
 
     const divResume = document.querySelector(".resumeContent");
 
-    while( divResume.firstChild){
+    while (divResume.firstChild) {
         divResume.removeChild(divResume.firstChild);
     }
 
@@ -189,21 +189,61 @@ const showResume = () => {
         divResume.appendChild(noService);
 
         return;
-    } 
-
+    }
+    const headingDate = document.createElement('h3');
+    headingDate.textContent = "Resume of date";
     // show the resume
-    const nameDate = document.createElement('p');
+    const nameDate = document.createElement("p");
     nameDate.innerHTML = `<span>Name:</span> ${name}`;
 
-    const dayDate = document.createElement('p');
+    const dayDate = document.createElement("p");
     dayDate.innerHTML = `<span>Day:</span> ${date}`;
 
-    const hourDate = document.createElement('p');
+    const hourDate = document.createElement("p");
     hourDate.innerHTML = `<span>hour:</span> ${hour}`;
 
+    const serviceDate = document.createElement('div');
+    serviceDate.classList.add('service-resume');
+
+    const headingService = document.createElement('h3');
+    headingService.textContent = "Resume of your services";
+    serviceDate.appendChild(headingService);
+
+    let mount = 0;
+
+    services.forEach((service) => {
+        const { name, price } = service;
+
+        const container = document.createElement("div");
+        container.classList.add("service-container");
+
+        const serviceText = document.createElement("p");
+        serviceText.textContent = name;
+
+        const servicePrice = document.createElement("p");
+        servicePrice.textContent = price;
+        servicePrice.classList.add('price');
+       
+        const total = price.split('$');
+        mount += parseInt(total[1].trim());
+
+        container.appendChild(serviceText);
+        container.appendChild(servicePrice);
+
+        serviceDate.appendChild(container);
+    });
+
+    const total = document.createElement('p');
+    total.classList.add('total');
+    total.innerHTML = `<span>Total mount: </span>$${mount}`;
+
+    divResume.appendChild(headingDate);
     divResume.appendChild(nameDate);
     divResume.appendChild(dayDate);
     divResume.appendChild(hourDate);
+    divResume.appendChild(serviceDate);
+    divResume.appendChild(total);
+
 };
 
 const nameDate = () => {
@@ -257,7 +297,7 @@ const dayDate = () => {
             showAlert("the weekends are not valid dude", "error");
         } else {
             cita.date = inputDate.value;
-            console.log(cita);
+            // console.log(cita);
         }
         /* const options = {
             weekday: 'long',
@@ -286,18 +326,18 @@ const valitDate = () => {
     inputDate.min = fecha;
 };
 
-const hourDate = () =>{
-    const inputHour = document.getElementById('hour');
-    inputHour.addEventListener('input', e =>{
+const hourDate = () => {
+    const inputHour = document.getElementById("hour");
+    inputHour.addEventListener("input", (e) => {
         const dateHour = e.target.value;
         const hour = dateHour.split(":");
-        if(hour[0] < 10 || hour[0] > 18){
-            showAlert('opening hours from 9hrs to 18hrs', 'error');
-            setTimeout(() =>{
-                inputHour.value = '';
-            }, 1000)
+        if (hour[0] < 10 || hour[0] > 18) {
+            showAlert("opening hours from 9hrs to 18hrs", "error");
+            setTimeout(() => {
+                inputHour.value = "";
+            }, 1000);
         } else {
             cita.hour = dateHour;
         }
-    })
-}
+    });
+};
